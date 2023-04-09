@@ -12,8 +12,8 @@ public class Elementos {
     public Elementos() {
         this.elementos = new ArrayList<>();
         //String nombre, String provincia, double precio, ArrayList<Integer> valoraciones,boolean piscina
-        elementos.add(new Elemento(1, 1,"El mejor verano de mi vida", Categoria.comedia));
-        elementos.add(new Elemento(2,1, "Misión Imposible IV fallout", Categoria.accion));
+        elementos.add(new Elemento(1, 1,"El mejor verano de mi vida", "comedia"));
+        elementos.add(new Elemento(2,1, "Misión Imposible IV fallout", "accion"));
         //librería generadora de elementos mediante categoria maven
         /*Faker faker = new Faker();
         String nombre = faker.gameOfThrones().character();*/
@@ -35,5 +35,6 @@ public class Elementos {
         this.elementos.clear();
         this.elementos.addAll(elementos);
     }
+
 }
 

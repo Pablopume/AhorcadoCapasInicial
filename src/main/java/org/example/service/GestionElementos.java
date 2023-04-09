@@ -1,78 +1,80 @@
 package org.example.service;
 
 import org.example.common.CategoriaException;
+import org.example.dao.DaoElementosArray;
 import org.example.domain.Categoria;
 import org.example.domain.Elemento;
 
 import java.io.IOException;
 import java.util.List;
 
-public class GestionElementos implements IGestionElementos{
+public class GestionElementos implements IGestionElementos {
 
+    private DaoElementosArray dao;
 
     @Override
     public boolean isEmptyElementosList() {
-        return false;
+        return dao.isEmptyElementosList();
     }
 
     @Override
     public List<Elemento> getListaElementos() {
-        return null;
+        return dao.getLista();
     }
 
     @Override
-    public boolean addElemento(Elemento Elemento) throws CategoriaException {
-        return false;
+    public boolean addElemento(Elemento elemento) throws CategoriaException {
+        return dao.addElemento(elemento);
     }
 
     @Override
-    public List<Elemento> consulta(Categoria categoria) {
-        return null;
+    public List<Elemento> consulta(String categoria) {
+        return dao.consultaCategoria(categoria);
     }
 
     @Override
     public List<Elemento> consulta(int nivel) {
-        return null;
+        return dao.consultaNivel(nivel);
     }
 
     @Override
-    public void removeElemento(Elemento Elemento) {
-
+    public void removeElemento(Elemento elemento) {
+        dao.removeElemento(elemento);
     }
 
     @Override
     public List<Elemento> ElementosPorNivel(int nivel) {
-        return null;
+        return dao.consultaNivel(nivel);
     }
 
     @Override
-    public boolean actualizarCategoria(int id, Categoria categoria) throws CategoriaException {
-        return false;
+    public boolean actualizarElemento(Elemento elemento,int level, String categoria, String incognita) throws CategoriaException {
+        return dao.actualizarElemento(elemento, level, categoria, incognita);
     }
 
     @Override
-    public List<Elemento> consultaHoteles(boolean ascendente) {
-        return null;
+    public List<Elemento> consultaElementos(boolean ascendente) {
+        return dao.consultaElementos(ascendente);
     }
 
     @Override
     public List<Elemento> getListaElementosCategoria(String categoria) {
-        return null;
+        return dao.consultaCategoria(categoria);
     }
 
     @Override
     public void crearFicheros() throws IOException {
-
+        dao.crearFicheros();
     }
 
     @Override
-    public boolean cargarFichero() throws IOException {
-        return false;
+    public List<Elemento> cargarFichero() throws Exception {
+        return dao.cargarFichero();
     }
 
     @Override
-    public boolean escribirFichero() {
-        return false;
+    public boolean escribirFichero() throws Exception{
+        return dao.escribirFichero();
     }
 
     @Override
