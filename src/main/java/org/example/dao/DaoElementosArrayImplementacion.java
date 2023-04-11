@@ -68,7 +68,7 @@ public class DaoElementosArrayImplementacion implements DaoElementosArray {
         public List<Elemento> consultaNivelDificultad(int nivel, String categoria) {
             List<Elemento> lista2 = new ArrayList<>();
             for (int i = 0; i < lista.size(); i++) {
-                if (this.lista.get(i).getLevel() == nivel && this.lista.get(i).getCategoria().equals(categoria)) {
+                if (this.lista.get(i).getLevel() == nivel && this.lista.get(i).getCategoria().equalsIgnoreCase(categoria)) {
                     lista2.add(this.lista.get(i));
                 }
             }

@@ -33,6 +33,8 @@ public class GestionApli {
                     int id3=sc.nextInt();
                     ge.removeElemento(id3);
                     break;
+                default:
+                    System.out.println("Has introducido una opción inexistente");
             }
         }
         while (num != 0);

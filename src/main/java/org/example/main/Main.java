@@ -11,25 +11,38 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
+        int num;
+        do {
         System.out.println("Si quieres jugar pulsa 1, si eres administrador 2");
-        int num = sc.nextInt();
+         num = sc.nextInt();
+
         switch (num) {
             case 1:
                 JuegoApli ju=new JuegoApli();
                 ju.apli();
                 break;
             case 2:
+                introducirContrasenya(sc);
                 GestionApli ge = new GestionApli();
                 ge.apli();
                 break;
+            default:
+                System.out.println("Has introducido una opción que no existe");
         }
+        }
+        while (num!=1 && num!=2);
+    }
 
-        Faker faker = new Faker();
-        String nombre = faker.gameOfThrones().character();
-        System.out.println(nombre);
-        String animal = faker.animal().name();
-        System.out.println(animal);
-        String fecha = faker.date().birthday(10, 15).toString();
-        System.out.println(fecha);
+    private static void introducirContrasenya(Scanner sc) {
+        String contrasenya="1234";
+        String contra;
+        do {
+            System.out.println("Escribe la contraseña");
+            contra= sc.nextLine();
+            if (!contra.equals(contrasenya)){
+                System.out.println("Contraseña incorrecta, introduzcala de nuevo");
+            }
+        }
+        while (!contra.equals(contrasenya));
     }
 }
