@@ -2,22 +2,26 @@ package org.example.main;
 
 import com.github.javafaker.Faker;
 import org.example.common.CategoriaException;
+import org.example.dao.DaoElementosArray;
+import org.example.dao.DaoElementosArrayImplementacion;
 
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws CategoriaException {
+    public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         System.out.println("Si quieres jugar pulsa 1, si eres administrador 2");
         int num = sc.nextInt();
         switch (num) {
             case 1:
+                JuegoApli ju=new JuegoApli();
+                ju.apli();
                 break;
             case 2:
                 GestionApli ge = new GestionApli();
                 ge.apli();
-
+                break;
         }
 
         Faker faker = new Faker();

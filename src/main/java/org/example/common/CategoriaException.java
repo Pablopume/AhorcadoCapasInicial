@@ -5,8 +5,6 @@
  */
 package org.example.common;
 
-import org.example.domain.Categoria;
-
 import java.util.Arrays;
 
 /**
@@ -16,6 +14,6 @@ import java.util.Arrays;
 public class CategoriaException extends Exception {
 
     public CategoriaException() {
-        super("La categoria debe ser alguna de las siguientes"+ Arrays.toString(Categoria.values()));
+        super("La categoria debe ser alguna de las siguientes");
     }
 }

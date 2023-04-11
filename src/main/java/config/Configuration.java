@@ -6,26 +6,26 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Configuration {
-    private Properties properties;
-    private String listaElementos;
+    private static Configuration instance = null;
+    private Properties p;
 
-    public Configuration() throws Exception {
+    public Configuration() {
         try {
-            properties=new Properties();
-            properties.load(Configuration.class.getClassLoader().getResourceAsStream("properties"));
-            this.listaElementos=properties.getProperty("listaElementos");
-        }
-        catch (IOException e){
-            throw new Exception(e);
+            p = new Properties();
+            p.load(Configuration.class.getClassLoader().getResourceAsStream("properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public Properties getProperties() {
-        return properties;
+    public static Configuration getInstance() {
+        if (instance == null) {
+            instance = new Configuration();
+        }
+        return instance;
     }
 
-    public String getListaElementos() {
-        return listaElementos;
+    public String getProperty(String key) {
+        return p.getProperty(key);
     }
-
 }

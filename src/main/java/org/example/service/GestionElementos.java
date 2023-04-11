@@ -2,15 +2,18 @@ package org.example.service;
 
 import org.example.common.CategoriaException;
 import org.example.dao.DaoElementosArray;
-import org.example.domain.Categoria;
+import org.example.dao.DaoElementosArrayImplementacion;
 import org.example.domain.Elemento;
 
 import java.io.IOException;
 import java.util.List;
 
 public class GestionElementos implements IGestionElementos {
+private final DaoElementosArray dao=new DaoElementosArrayImplementacion();
 
-    private DaoElementosArray dao;
+    public DaoElementosArray getDao() {
+        return dao;
+    }
 
     @Override
     public boolean isEmptyElementosList() {
@@ -22,11 +25,18 @@ public class GestionElementos implements IGestionElementos {
         return dao.getLista();
     }
 
+    public void empezar() throws Exception {
+        dao.cargarFichero();
+    }
+
     @Override
     public boolean addElemento(Elemento elemento) throws CategoriaException {
         return dao.addElemento(elemento);
     }
 
+    public void setLista(List<Elemento> lista) {
+         dao.setLista(lista);
+    }
     @Override
     public List<Elemento> consulta(String categoria) {
         return dao.consultaCategoria(categoria);
@@ -38,8 +48,8 @@ public class GestionElementos implements IGestionElementos {
     }
 
     @Override
-    public void removeElemento(Elemento elemento) {
-        dao.removeElemento(elemento);
+    public void removeElemento(int id) {
+        dao.removeElemento(id);
     }
 
     @Override
@@ -48,13 +58,16 @@ public class GestionElementos implements IGestionElementos {
     }
 
     @Override
-    public boolean actualizarElemento(Elemento elemento,int level, String categoria, String incognita) throws CategoriaException {
-        return dao.actualizarElemento(elemento, level, categoria, incognita);
+    public boolean actualizarElemento(int id,int level, String categoria, String incognita) throws CategoriaException {
+        return dao.actualizarElemento(id, level, categoria, incognita);
     }
 
     @Override
     public List<Elemento> consultaElementos(boolean ascendente) {
         return dao.consultaElementos(ascendente);
+    }
+    public List<Elemento> consultaNivelDificultad(int nivel, String categoria){
+        return dao.consultaNivelDificultad(nivel, categoria);
     }
 
     @Override
@@ -73,8 +86,8 @@ public class GestionElementos implements IGestionElementos {
     }
 
     @Override
-    public boolean escribirFichero() throws Exception{
-        return dao.escribirFichero();
+    public boolean escribirFichero(Elemento elemento) throws Exception{
+        return dao.escribirFichero(elemento);
     }
 
     @Override

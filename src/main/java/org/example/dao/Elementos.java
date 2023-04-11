@@ -1,6 +1,5 @@
 package org.example.dao;
 
-import org.example.domain.Categoria;
 import org.example.domain.Elemento;
 
 import java.util.ArrayList;

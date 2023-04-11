@@ -1,6 +1,5 @@
 package org.example.dao;
 
-import org.example.domain.Categoria;
 import org.example.domain.Elemento;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public class DaoElementosImplementacion implements DaoElementos {
     }
 
     @Override
-    public List<Elemento> consulta(Categoria categoria) {
+    public List<Elemento> consulta(String categoria) {
         return null;
     }
 
