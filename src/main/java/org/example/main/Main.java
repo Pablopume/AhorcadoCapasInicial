@@ -5,30 +5,40 @@ import org.example.common.CategoriaException;
 import org.example.dao.DaoElementosArray;
 import org.example.dao.DaoElementosArrayImplementacion;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
-        int num;
+        int num=0;
         do {
-        System.out.println("Si quieres jugar pulsa 1, si eres administrador 2");
-         num = sc.nextInt();
 
-        switch (num) {
-            case 1:
-                JuegoApli ju=new JuegoApli();
-                ju.apli();
-                break;
-            case 2:
-                introducirContrasenya(sc);
-                GestionApli ge = new GestionApli();
-                ge.apli();
-                break;
-            default:
-                System.out.println("Has introducido una opción que no existe");
-        }
+            try {
+                System.out.println("Si quieres jugar pulsa 1, si eres administrador 2");
+
+                num = sc.nextInt();
+
+                switch (num) {
+                    case 1:
+                        JuegoApli ju = new JuegoApli();
+                        ju.apli();
+                        break;
+                    case 2:
+                        introducirContrasenya(sc);
+                        GestionApli ge = new GestionApli();
+                        ge.apli();
+                        break;
+                    default:
+                        System.out.println("Has introducido una opción que no existe");
+                }
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Introduce un número");
+
+            }
+
         }
         while (num!=1 && num!=2);
     }

@@ -14,6 +14,6 @@ import java.util.Arrays;
 public class CategoriaException extends Exception {
 
     public CategoriaException() {
-        super("La categoria debe ser alguna de las siguientes");
+        super("Esa categoría no existe");
     }
 }

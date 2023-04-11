@@ -8,7 +8,7 @@ import org.example.domain.Elemento;
 import java.io.IOException;
 import java.util.List;
 
-public class GestionElementos implements IGestionElementos {
+public class GestionElementos implements IGestionElementos, DaoElementosArray {
 private final DaoElementosArray dao=new DaoElementosArrayImplementacion();
 
     public DaoElementosArray getDao() {
@@ -25,13 +25,32 @@ private final DaoElementosArray dao=new DaoElementosArrayImplementacion();
         return dao.getLista();
     }
 
-    public void empezar() throws Exception {
-        dao.cargarFichero();
+    public void empezar() {
+        try {
+            dao.cargarFichero();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public boolean addElemento(Elemento elemento) throws CategoriaException {
         return dao.addElemento(elemento);
+    }
+
+    @Override
+    public List<Elemento> getLista() {
+        return null;
+    }
+
+    @Override
+    public List<Elemento> consultaCategoria(String categoria) {
+        return null;
+    }
+
+    @Override
+    public List<Elemento> consultaNivel(int nivel) {
+        return null;
     }
 
     public void setLista(List<Elemento> lista) {
@@ -58,7 +77,7 @@ private final DaoElementosArray dao=new DaoElementosArrayImplementacion();
     }
 
     @Override
-    public boolean actualizarElemento(int id,int level, String categoria, String incognita) throws CategoriaException {
+    public boolean actualizarElemento(int id,int level, String categoria, String incognita) {
         return dao.actualizarElemento(id, level, categoria, incognita);
     }
 

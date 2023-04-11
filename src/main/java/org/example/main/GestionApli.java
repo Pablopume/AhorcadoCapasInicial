@@ -4,6 +4,7 @@ import org.example.common.CategoriaException;
 import org.example.domain.Elemento;
 import org.example.service.GestionElementos;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GestionApli {
@@ -13,28 +14,33 @@ public class GestionApli {
     public void apli() throws Exception {
         GestionElementos ge = new GestionElementos();
         Scanner sc = new Scanner(System.in);
-        int num;
+        int num=0;
         ge.getDao().setLista(ge.getDao().cargarFichero());
         do {
-            System.out.println("Escribe 0 para salir, 1 para listar diccionario ordenado, 2 para añadir elemento, 3 para modificar algún elemento del diccionario,4 para eliminar un elemento del diccionario");
-            num = sc.nextInt();
-            switch (num) {
-                case 1:
-                    ge.consultaElementos(true).forEach(System.out::println);
-                    break;
-                case 2:
-                    anyadirElemento(ge, sc);
-                    break;
-                case 3:
-                    cambiarCampo(ge, sc);
-                    break;
-                case 4:
-                    System.out.println("Introduce el id del elemento a borrar");
-                    int id3=sc.nextInt();
-                    ge.removeElemento(id3);
-                    break;
-                default:
-                    System.out.println("Has introducido una opción inexistente");
+            try {
+                System.out.println("Escribe 0 para salir, 1 para listar diccionario ordenado, 2 para añadir elemento, 3 para modificar algún elemento del diccionario,4 para eliminar un elemento del diccionario");
+                num = sc.nextInt();
+                switch (num) {
+                    case 1:
+                        ge.consultaElementos(true).forEach(System.out::println);
+                        break;
+                    case 2:
+                        anyadirElemento(ge, sc);
+                        break;
+                    case 3:
+                        cambiarCampo(ge, sc);
+                        break;
+                    case 4:
+                        System.out.println("Introduce el id del elemento a borrar");
+                        int id3 = sc.nextInt();
+                        ge.removeElemento(id3);
+                        break;
+                    default:
+                        System.out.println("Has introducido una opción inexistente");
+                }
+            }catch (InputMismatchException e){
+                System.out.println("Has introducido una letra y tienes que introducir un numero");
+                sc.nextLine();
             }
         }
         while (num != 0);

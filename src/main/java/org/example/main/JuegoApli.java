@@ -1,6 +1,7 @@
 package org.example.main;
 
 import org.example.common.CategoriaException;
+import org.example.common.TamanyoExcepcion;
 import org.example.domain.Juego;
 import org.example.domain.Jugador;
 import org.example.service.GestionElementos;
@@ -43,29 +44,53 @@ public class JuegoApli {
                 System.out.println("Lo siento, esa no es la palabra.");
             }
         } else if (palabra.length() != 1) {
-            System.out.println("Has introducido un número de carácteres diferente al de la palabra");
+            try {
+                throw new TamanyoExcepcion();
+            } catch (TamanyoExcepcion e) {
+                System.out.println("Has introducido un número de carácteres diferente al de la palabra");
+            }
+
             jue.setIntentos(jue.getIntentos() - 1);
-        } else {
+        } else if (!((palabra.charAt(0) >=65) && (palabra.charAt(0) <=90)) || !((palabra.charAt(0)>=97 && (palabra.charAt(0)<=122))) ){
+            try {
+                throw new TamanyoExcepcion();
+            }
+            catch (TamanyoExcepcion e){
+                System.out.println("Ese carácter no es válido");
+            jue.setIntentos(jue.getIntentos()-1);
+        }}
+        else{
             boolean letraEncontrada = false;
 
             char[] incognita = jue.getaAdivinar().getIncognita().toCharArray();
             for (int i = 0; i < incognita.length; i++) {
-                char palbra3 = palabra.charAt(0);
-                if (jue.getaAdivinar().getIncognita().charAt(i) == palbra3) {
-                    intento[i] = palabra;
-                    letraEncontrada = true;
-                }
+                letraEncontrada = isLetraEncontrada(jue, intento, palabra, letraEncontrada, i);
             }
             if (letraEncontrada) {
                 System.out.println("¡Muy bien, has encontrado una letra!");
             } else {
                 System.out.println("Lo siento, esa letra no está en la palabra.");
-
             }
         }
 
         jue.setIntentos(jue.getIntentos() + 1);
         return palabra;
+    }
+
+    private static boolean isLetraEncontrada(Juego jue, String[] intento, String palabra, boolean letraEncontrada, int i) {
+        char palbra3 = palabra.charAt(0);
+        char palbra4=0;
+        if(palbra3>=65 && palbra3<=90) {
+            palbra4 = (char) (palbra3 + 32);
+        }
+        else if (palbra3>=97 && palbra3<=122){
+            palbra4=(char) (palbra3-32);
+        }
+        if (jue.getaAdivinar().getIncognita().charAt(i) == palbra3 || jue.getaAdivinar().getIncognita().charAt(i)== palbra4 ) {
+            intento[i] = palabra;
+            letraEncontrada = true;
+        }
+        return letraEncontrada;
     }
 
     private static String inicioJuego(Scanner sc, Juego jue, String[] intento) {
@@ -86,7 +111,7 @@ public class JuegoApli {
         return palabra;
     }
 
-    private static Juego Introduccion(GestionElementos ge, Scanner sc, Jugador jug1) {
+    private static Juego Introduccion(GestionElementos ge, Scanner sc, Jugador jug1) throws CategoriaException {
         boolean categoriaExiste;
         String categoria;
         do {
@@ -103,14 +128,14 @@ public class JuegoApli {
         return new Juego(ge.getDao().consultaNivelDificultad(dificultad, categoria).get(numero), jug1);
     }
 
-    private static boolean categoriaValida(GestionElementos ge, boolean categoriaExiste, String categoria) {
+    private static boolean categoriaValida(GestionElementos ge, boolean categoriaExiste, String categoria) throws CategoriaException {
         for (int i = 0; i < ge.getDao().getLista().size(); i++) {
             if (ge.getDao().getLista().get(i).getCategoria().equalsIgnoreCase(categoria)) {
                 categoriaExiste = true;
             }
         }
         if (!categoriaExiste) {
-            System.out.println("Categoria no válida");
+            throw new CategoriaException();
         }
         return categoriaExiste;
     }
