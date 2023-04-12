@@ -1,4 +1,4 @@
-package org.example.main;
+package org.example.ui;
 
 import org.example.common.CategoriaException;
 import org.example.domain.Elemento;
@@ -76,6 +76,6 @@ public class GestionApli {
         System.out.println("Pon el nombre del elemento");
         String nombre2= sc.nextLine();
         ge.actualizarElemento(id2,nivel2,categ,nombre2);
-        return;
+
     }
 }

@@ -1,9 +1,4 @@
-package org.example.main;
-
-import com.github.javafaker.Faker;
-import org.example.common.CategoriaException;
-import org.example.dao.DaoElementosArray;
-import org.example.dao.DaoElementosArrayImplementacion;
+package org.example.ui;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

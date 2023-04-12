@@ -12,6 +12,9 @@ import java.util.Arrays;
  * @author examen
  */
 public class CategoriaException extends Exception {
+    public CategoriaException(String message) {
+        super(message);
+    }
 
     public CategoriaException() {
         super("Esa categoría no existe");

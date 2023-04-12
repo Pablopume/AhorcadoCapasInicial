@@ -1,4 +1,4 @@
-package org.example.main;
+package org.example.ui;
 
 import org.example.common.CategoriaException;
 import org.example.common.TamanyoExcepcion;
@@ -51,14 +51,14 @@ public class JuegoApli {
             }
 
             jue.setIntentos(jue.getIntentos() - 1);
-        } else if (!((palabra.charAt(0) >=65) && (palabra.charAt(0) <=90)) || !((palabra.charAt(0)>=97 && (palabra.charAt(0)<=122))) ){
+        } /*else if (!((palabra.charAt(0) >=65) && (palabra.charAt(0) <=90)) || !((palabra.charAt(0)>=97 && (palabra.charAt(0)<=122))) ){
             try {
                 throw new TamanyoExcepcion();
             }
             catch (TamanyoExcepcion e){
                 System.out.println("Ese carácter no es válido");
             jue.setIntentos(jue.getIntentos()-1);
-        }}
+        }}*/
         else{
             boolean letraEncontrada = false;
 

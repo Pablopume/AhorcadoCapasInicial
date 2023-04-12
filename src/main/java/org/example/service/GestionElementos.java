@@ -9,7 +9,15 @@ import java.io.IOException;
 import java.util.List;
 
 public class GestionElementos implements IGestionElementos, DaoElementosArray {
-private final DaoElementosArray dao=new DaoElementosArrayImplementacion();
+private final DaoElementosArray dao;
+
+    public GestionElementos() {
+        dao=new DaoElementosArrayImplementacion();
+    }
+
+    public GestionElementos(DaoElementosArray dao) {
+        this.dao = dao;
+    }
 
     public DaoElementosArray getDao() {
         return dao;
