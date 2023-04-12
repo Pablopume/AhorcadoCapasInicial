@@ -48,7 +48,7 @@ private final DaoElementosArray dao;
 
     @Override
     public List<Elemento> getLista() {
-        return null;
+        return dao.getLista();
     }
 
     @Override

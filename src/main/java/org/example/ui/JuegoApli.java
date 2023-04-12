@@ -12,7 +12,7 @@ public class JuegoApli {
 
     public void apli() throws Exception {
         GestionElementos ge = new GestionElementos();
-        ge.getDao().setLista(ge.getDao().cargarFichero());
+        ge.setLista(ge.cargarFichero());
         String palabra;
         int palabra2;
         Scanner sc = new Scanner(System.in);
@@ -123,14 +123,14 @@ public class JuegoApli {
         System.out.println("Escribe la dificultad, van del 1 al 3, cuanto más nivel las palabras son más largas.");
         int dificultad = sc.nextInt();
         sc.nextLine();
-        int numero = (int) (Math.random() * ge.getDao().consultaNivelDificultad(dificultad, categoria).size());
+        int numero = (int) (Math.random() * ge.consultaNivelDificultad(dificultad, categoria).size());
         System.out.println(numero);
-        return new Juego(ge.getDao().consultaNivelDificultad(dificultad, categoria).get(numero), jug1);
+        return new Juego(ge.consultaNivelDificultad(dificultad, categoria).get(numero), jug1);
     }
 
     private static boolean categoriaValida(GestionElementos ge, boolean categoriaExiste, String categoria) throws CategoriaException {
-        for (int i = 0; i < ge.getDao().getLista().size(); i++) {
-            if (ge.getDao().getLista().get(i).getCategoria().equalsIgnoreCase(categoria)) {
+        for (int i = 0; i < ge.getLista().size(); i++) {
+            if (ge.getLista().get(i).getCategoria().equalsIgnoreCase(categoria)) {
                 categoriaExiste = true;
             }
         }

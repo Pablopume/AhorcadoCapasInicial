@@ -14,7 +14,7 @@ public class Main {
                 System.out.println("Si quieres jugar pulsa 1, si eres administrador 2");
 
                 num = sc.nextInt();
-
+                sc.nextLine();
                 switch (num) {
                     case 1:
                         JuegoApli ju = new JuegoApli();
@@ -39,7 +39,7 @@ public class Main {
     }
 
     private static void introducirContrasenya(Scanner sc) {
-        String contrasenya="1234";
+        String contrasenya="2223";
         String contra;
         do {
             System.out.println("Escribe la contraseña");

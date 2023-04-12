@@ -1,6 +1,7 @@
 package org.example.ui;
 
 import org.example.common.CategoriaException;
+import org.example.dao.DaoElementosArrayImplementacion;
 import org.example.domain.Elemento;
 import org.example.service.GestionElementos;
 
@@ -12,10 +13,11 @@ public class GestionApli {
 
 
     public void apli() throws Exception {
+
         GestionElementos ge = new GestionElementos();
         Scanner sc = new Scanner(System.in);
         int num=0;
-        ge.getDao().setLista(ge.getDao().cargarFichero());
+        ge.setLista(ge.cargarFichero());
         do {
             try {
                 System.out.println("Escribe 0 para salir, 1 para listar diccionario ordenado, 2 para añadir elemento, 3 para modificar algún elemento del diccionario,4 para eliminar un elemento del diccionario");
@@ -44,8 +46,8 @@ public class GestionApli {
             }
         }
         while (num != 0);
-        for (int i = 0; i <ge.getDao().getLista().size() ; i++) {
-            ge.escribirFichero(ge.getDao().getLista().get(i));
+        for (int i = 0; i <ge.getLista().size() ; i++) {
+            ge.escribirFichero(ge.getLista().get(i));
         }
 
     }
