@@ -1,8 +1,9 @@
 package org.example.domain;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class Elemento implements Comparable<Elemento> {
+public class Elemento implements Comparable<Elemento>, Serializable {
     private int id;
     private int level;
     private String incognita;
